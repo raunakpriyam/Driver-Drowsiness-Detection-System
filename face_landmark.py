@@ -39,7 +39,7 @@ def yawn(a,b,c,d,e,f,g,h):
     vertical=compute(c,d)+ compute(e,f)+compute(g,h)
     horizontal=compute(a,b)
     ratio=vertical/(3*horizontal)
-    if(ratio>20):
+    if(ratio>10):
         return 1
     else:
         return 0
@@ -71,7 +71,7 @@ while True:
                              landmarks[38], landmarks[41], landmarks[40], landmarks[39])
         right_blink = blinked(landmarks[42], landmarks[43],
                               landmarks[44], landmarks[47], landmarks[46], landmarks[45])
-        yawn_check=yawn(landmarks[49],landmarks[55],landmarks[50],landmarks[60],landmarks[52],landmarks[58],landmarks[53],landmarks[57])
+        yawn_check=yawn(landmarks[49],landmarks[55],landmarks[50],landmarks[60],landmarks[52],landmarks[58],landmarks[54],landmarks[56])
 
 
 
@@ -96,12 +96,12 @@ while True:
                 duration = 1000  # milliseconds
                 freq = 440  # Hz
                 winsound.Beep(freq, duration)
-            elif(yawn_check):
-                status="Drowsy!!"
-                color = (0, 0, 255)
-                duration = 1000  # milliseconds
-                freq = 440  # Hz
-                winsound.Beep(freq, duration)
+        elif (yawn_check):
+            status = "Yawn !!"
+            color = (0, 0, 255)
+            duration = 1000  # milliseconds
+            freq = 440  # Hz
+            winsound.Beep(freq, duration)
 
         else:
             drowsy = 0
