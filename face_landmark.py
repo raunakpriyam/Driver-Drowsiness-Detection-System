@@ -34,6 +34,16 @@ def blinked(a, b, c, d, e, f):
         return 1
     else:
         return 0
+#yawning
+def yawn(a,b,c,d,e,f,g,h):
+    vertical=compute(c,d)+ compute(e,f)+compute(g,h)
+    horizontal=compute(a,b)
+    ratio=vertical/(3*horizontal)
+    if(ratio>20):
+        return 1
+    else:
+        return 0
+
 
 
 while True:
@@ -54,12 +64,15 @@ while True:
 
         landmarks = predictor(gray, face)
         landmarks = face_utils.shape_to_np(landmarks)
+        #print(landmarks)
 
 
         left_blink = blinked(landmarks[36], landmarks[37],
                              landmarks[38], landmarks[41], landmarks[40], landmarks[39])
         right_blink = blinked(landmarks[42], landmarks[43],
                               landmarks[44], landmarks[47], landmarks[46], landmarks[45])
+        yawn_check=yawn(landmarks[49],landmarks[55],landmarks[50],landmarks[60],landmarks[52],landmarks[58],landmarks[53],landmarks[57])
+
 
 
         if (left_blink == 0 or right_blink == 0):
@@ -73,12 +86,18 @@ while True:
                 freq = 440  # Hz
                 winsound.Beep(freq, duration)
 
-        elif (left_blink == 1 or right_blink == 1):
+        elif (left_blink == 1 or right_blink == 1 ):
             sleep = 0
             active = 0
             drowsy += 1
             if (drowsy > 6):
                 status = "Drowsy !!"
+                color = (0, 0, 255)
+                duration = 1000  # milliseconds
+                freq = 440  # Hz
+                winsound.Beep(freq, duration)
+            elif(yawn_check):
+                status="Drowsy!!"
                 color = (0, 0, 255)
                 duration = 1000  # milliseconds
                 freq = 440  # Hz
