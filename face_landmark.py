@@ -39,7 +39,7 @@ def yawn(a,b,c,d,e,f,g,h):
     vertical=compute(c,d)+ compute(e,f)+compute(g,h)
     horizontal=compute(a,b)
     ratio=vertical/(3*horizontal)
-    if(ratio>10):
+    if(ratio>=0.7):
         return 1
     else:
         return 0
